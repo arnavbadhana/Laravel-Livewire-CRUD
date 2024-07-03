@@ -11,14 +11,15 @@ class CarList extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     protected $listeners = ['carAdded' => 'refreshCar'];
+    public $search;
 
     public function refreshCar(){
-        $cars = Car::paginate(5);
+        $cars = Car::where('car_name', 'like', '%' . $this->search . '%')->paginate(5);
     }
 
     public function render()
     {
-        $cars = Car::paginate(5);
+        $cars = Car::where('car_name', 'like', '%' . $this->search . '%')->paginate(5);
         return view('livewire.car-list', ['cars' => $cars]);
     }
 

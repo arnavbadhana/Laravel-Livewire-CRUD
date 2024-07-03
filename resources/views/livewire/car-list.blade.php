@@ -9,6 +9,12 @@
         </div>
     </div>
     <div class="card-body">
+      {{-- Search Bar --}}
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Search here...</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" wire:model.live.debounce.200ms = "search">
+      </div>
+
         <table class="table table-striped">
             <thead>
               <tr>
