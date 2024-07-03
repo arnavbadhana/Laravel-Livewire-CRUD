@@ -34,5 +34,8 @@
               @endforeach
             </tbody>
           </table>
+          {{-- <div class="pagination">
+            {{ $cars->links() }}
+          </div> --}}
     </div>
 </div>

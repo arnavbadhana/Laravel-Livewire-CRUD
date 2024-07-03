@@ -4,19 +4,25 @@ namespace App\Livewire;
 
 use App\Models\Car;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class CarList extends Component
 {
-    public $cars;
-    public function mount()
-    {
-        $this->cars = Car::all();
+    use WithPagination;
+    protected $listeners = ['carAdded' => 'refreshCar'];
+
+    public function mount(){
+        $cars = Car::paginate(5);
+    }
+
+    public function refreshCar(){
+        $cars = Car::paginate(5);
     }
 
     public function render()
     {
         // $cars = $this->cars;
-        return view('livewire.car-list', ['cars' => $this->cars]);
+        return view('livewire.car-list', ['cars' => $cars]);
     }
 
     public function delete($id){

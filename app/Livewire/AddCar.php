@@ -22,11 +22,11 @@ class AddCar extends Component
             'fuel_type' => 'required'
         ]);
 
-        try {
             $result = Car::create($validated);
+            if($result){
+                $this->dispatch('carAdded');
+            }
             return $this->redirect(route('CarsList'), navigate:true);
-        } catch (\Exeption $e) {
-            dd($e);
-        }
+
     }
 }
