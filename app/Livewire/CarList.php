@@ -9,11 +9,8 @@ use Livewire\WithPagination;
 class CarList extends Component
 {
     use WithPagination;
+    protected $paginationTheme = 'bootstrap';
     protected $listeners = ['carAdded' => 'refreshCar'];
-
-    public function mount(){
-        $cars = Car::paginate(5);
-    }
 
     public function refreshCar(){
         $cars = Car::paginate(5);
@@ -21,7 +18,7 @@ class CarList extends Component
 
     public function render()
     {
-        // $cars = $this->cars;
+        $cars = Car::paginate(5);
         return view('livewire.car-list', ['cars' => $cars]);
     }
 
